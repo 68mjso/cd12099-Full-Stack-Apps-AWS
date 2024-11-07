@@ -11,7 +11,7 @@ const port = process.env.PORT || 8082;
 // Use the body parser middleware for post requests
 app.use(bodyParser.json());
 
-app.route("filteredimage", async (req, res, next) => {
+app.get("/filteredimage", async (req, res, next) => {
   const imageUrl = req?.query?.image_url ?? "";
   if (imageUrl.trim() === "") {
     var e = new Error("Missing input");
@@ -19,8 +19,8 @@ app.route("filteredimage", async (req, res, next) => {
     next(e);
     return;
   }
-  const res = await filterImageFromURL(imageUrl);
-  res.status(200).send(res);
+  const data = await filterImageFromURL(imageUrl);
+  res.status(200).send(data);
 });
 
 // @TODO1 IMPLEMENT A RESTFUL ENDPOINT
