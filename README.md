@@ -1,6 +1,6 @@
 # Deployment Endpoint
 
-http://udacity12099-dev.us-east-1.elasticbeanstalk.com/
+EB_URL: http://udacity12099-dev.us-east-1.elasticbeanstalk.com/
 
 # Test FilteredImage Function
 
