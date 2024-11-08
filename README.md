@@ -1,10 +1,10 @@
 # Deployment Endpoint
 
-EB_URL: http://udacity12099-dev.us-east-1.elasticbeanstalk.com/
+EB_URL: http://udacity12099-dev2.us-east-1.elasticbeanstalk.com/
 
 # Test FilteredImage Function
 
-http://udacity12099-dev.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://mjso.s-ul.eu/eKQjW3uX
+http://udacity12099-dev2.us-east-1.elasticbeanstalk.com//filteredimage?image_url=https://mjso.s-ul.eu/eKQjW3uX
 
 
 # Full Stack Apps on AWS Project
