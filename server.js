@@ -14,13 +14,23 @@ app.use(bodyParser.json());
 app.get("/filteredimage", async (req, res, next) => {
   const imageUrl = req?.query?.image_url ?? "";
   if (imageUrl.trim() === "") {
-    var e = new Error("Missing input");
-    e.status = 400;
-    next(e);
-    return;
+    const error = new Error("Missing input: image_url is required.");
+    error.status = 400; // Bad Request for missing input
+    return res.status(error.status).json({ message: error.message }); // Return error message as JSON
   }
-  const data = await filterImageFromURL(imageUrl);
-  res.status(200).send(data);
+  try {
+    // Process the image URL (wrap in try-catch to handle any errors)
+    const data = await filterImageFromURL(imageUrl);
+    //Send success response with filtered image data
+    return res.status(200).send(data);
+  } catch (err) {
+    // Handle any errors like invalid image URL or processing failure
+    const error = new Error(
+      "Unable to process the image. Please check the image URL."
+    );
+    error.status = 422; // Unprocessable Entity for invalid images
+    return res.status(error.status).json({ message: error.message }); // Return error message as JSON
+  }
 });
 
 // @TODO1 IMPLEMENT A RESTFUL ENDPOINT
