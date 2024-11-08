@@ -22,7 +22,7 @@ app.get("/filteredimage", async (req, res, next) => {
     // Process the image URL (wrap in try-catch to handle any errors)
     const data = await filterImageFromURL(imageUrl);
     //Send success response with filtered image data
-    res.status(200).sendFile(data, async () => {
+    res.sendFile(data, async (err) => {
       if (err) {
         res.status(500).send("Error sending the image");
       } else {
@@ -30,7 +30,6 @@ app.get("/filteredimage", async (req, res, next) => {
         await deleteLocalFiles([imageUrl]);
       }
     });
-    deleteLocalFiles();
   } catch (err) {
     // Handle any errors like invalid image URL or processing failure
     const error = new Error(
